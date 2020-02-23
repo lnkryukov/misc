@@ -1,6 +1,5 @@
 cd $APP_ROOT
 
-git checkout deploy
-git pull
+git fetch origin deploy
 
 make
