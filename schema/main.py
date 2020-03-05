@@ -22,9 +22,6 @@ pp = pprint.PrettyPrinter().pprint
     # country = Column(String, nullable=True)
     # bio = Column(TEXT, nullable=True)
 
-# def customForbidden(key, scope, error):
-#     pp('{} {} {}'.format(key, scope, error))
-
 class customForbidden(Hook):
     def __init__(self, *args, **kwargs):
         kwargs["handler"] = self._default_function
