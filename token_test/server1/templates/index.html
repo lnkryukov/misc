@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Server1</title>
+    </head>
+    <body>
+        <a id="a" href="http://127.0.0.1:4000/login?redirectUri=">Login with server2</a>
+    </body>
+
+    <script>
+        document.addEventListener("DOMContentLoaded",
+            _ => {
+                let a = document.getElementById("a")
+                a.href = a.href + encodeURIComponent("127.0.0.1:5000/loginWithToken")
+            }
+        )
+    </script>
+</html>

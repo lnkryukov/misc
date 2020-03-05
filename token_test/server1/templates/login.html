@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Server1 Login</title>
+        <script src="https://cdn.rawgit.com/caldwell/renderjson/master/renderjson.js"></script>
+    </head>
+    <body>
+
+        <p>Logged in as <b>{{ user }}</b></p>
+        <div id="json" data-json="{{ token }}">Token: </div>
+
+    </body>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded",
+            _ => {
+                let div = document.getElementById("json");
+                let token = div.dataset["json"];
+                token = token.replace(/'/ig,'"')
+                token = JSON.parse(token)
+                div.appendChild(
+                    renderjson(token)
+                );
+            }
+        )
+
+    </script>
+</html>

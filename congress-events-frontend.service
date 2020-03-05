@@ -1,0 +1,12 @@
+[Unit]
+Description=Congress Events Frontend server
+After=network.target
+
+[Service]
+User=app
+WorkingDirectory=/var/www/EventsFront/client
+ExecStart=/usr/bin/yarn start
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
