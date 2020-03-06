@@ -8,6 +8,10 @@ import logging.config
 
 from .config import cfg
 
+'''
+Логгирование нужно конфигурировать до создания app, иначе какой-нибудь логгер может успеть 
+создаться раньше с дефольтным конфигом
+'''
 logging.config.dictConfig(cfg.LOGGING)
 
 app = Flask(__name__)
@@ -32,6 +36,6 @@ def run():
     http_server = WSGIServer(
         (cfg.HOST, cfg.PORT),
         app,
-        log = logger,
-        error_log = logger)
+        log = logger, # Gevent хуй клал на логгеры и конфиги, поэтому ему отедльно нужно сказать, чтобы перестал это делать
+        error_log = logger) # По умолчанию эта сволочь просто срет в stderr и не обращает внимание на конфиг
     http_server.serve_forever()
