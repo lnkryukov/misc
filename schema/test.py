@@ -1,3 +1,5 @@
+# TODO: Замутить issue на тему этого бага
+
 from schema import Schema, Forbidden, SchemaForbiddenKeyError
 
 try:
