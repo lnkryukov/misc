@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>File Uploads</title>
+    </head>
+    <body>
+        <img width="200px" height="200px" src='avatar/avatar' id='upload_btn' alt="Click me!" title="Click me!">
+    </body>
+
+    <style>
+        #upload_btn {
+            cursor: pointer;
+        }
+    </style>
+
+    <script>
+
+        const MAX_AVATAR_SIZE = 8 * 1024 * 1024
+
+        document.getElementById('upload_btn').onclick = e => {
+
+            var input = document.createElement('input');
+            input.type = 'file';
+            input.addEventListener('change',
+                e => {
+                    file = e.target.files[0]
+                    console.log(`Choosen file ${file}`)
+                    if (file===undefined) {
+                        console.log('No file selected')
+                        return
+                    }
+
+                    if (file.size > MAX_AVATAR_SIZE) {
+                        alert('Avatar size to large!')
+                        return
+                    }
+
+                    var formData = new FormData()
+                    formData.append('file', file)
+                    var request = new XMLHttpRequest()
+                    request.addEventListener('load',
+                        e => alert(e.target.responseText)
+                    )
+                    request.addEventListener('error',
+                        e => alert(e.target.responseText)
+                    )
+                    console.log('Opening connection...')
+                    request.open('POST', 'avatar')
+                    console.log('Sending request...')
+                    request.send(formData)
+                }
+            )
+            console.log('Opening file dialog...')
+            input.click();
+        }
+
+    </script>
+
+</html>

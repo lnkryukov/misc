@@ -1,0 +1,1 @@
+export FILE_UPLOADS_PARENT_FOLDER=""
