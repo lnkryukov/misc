@@ -29,7 +29,7 @@ sudo chcon -Rt httpd_sys_content_t /path/to/www
 4. Конфиги класть в `/etc/nginx/conf.d`.
 
 ## TODO
-
+1. 
 В `pacakge.json` добавить скрипт для деплоя
 ```json
 scripts {
@@ -38,4 +38,4 @@ scripts {
 }
 ```
 
-3. DNS
+2. DNS
