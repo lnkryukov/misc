@@ -1,10 +1,47 @@
-1. Selinux nginx Permission denied
+
+# Пример конфига для nginx для проксирования запросов
+
+Запрос на сам домен возврващает статику, запрос на поддомен api.* перенаправляет запрос к бекенду. Надо шаманить с DNS чтобы заработало.  
+В папках server1 и server2 лежат тупые сервера для тестирования.
+Один живет на 4000, другой на 5000 портах.  
+
+## Instructions
+
+1. 
+```bash
+python3 -m virtualenv .venv
+. .venv/bin/activate
+pip install -r requirements.txt
+```
+2.
+```bash
+sudo yum install nginx 
+sudo systemctl enable nginx
+sudo systemctl start nginx
+```
+
+3. Из-за гребанного SELinux нужно делать так, чтобы не было ошибок с permission denied.
+```bash
 sudo setsebool -P httpd_can_network_connect on 
 sudo chcon -Rt httpd_sys_content_t /path/to/www
+```
 
-2. npm
- 
+4. Конфиги класть в `/etc/nginx/conf.d`.
+
+## TODO
+
+1. Selinux nginx Permission denied  
+```bash
+
+```
+
+2. npm  
+В `pacakge.json` добавить скрипт для деплоя
+```json
 scripts {
   ...
   "deploy": "npm install && npm run build && mv build/* $DEPLOY_LOCATION"
 }
+```
+
+3. DNS
