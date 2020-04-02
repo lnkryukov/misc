@@ -30,12 +30,6 @@ sudo chcon -Rt httpd_sys_content_t /path/to/www
 
 ## TODO
 
-1. Selinux nginx Permission denied  
-```bash
-
-```
-
-2. npm  
 В `pacakge.json` добавить скрипт для деплоя
 ```json
 scripts {
