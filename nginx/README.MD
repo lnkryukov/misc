@@ -20,7 +20,7 @@ sudo systemctl enable nginx
 sudo systemctl start nginx
 ```
 
-3. Из-за гребанного SELinux нужно делать так, чтобы не было ошибок с permission denied.
+3. Из-за гребанного SELinux нужно делать [так](https://www.digitalocean.com/community/questions/403-forbidden-nginx-13-permission-denied), чтобы не было ошибок с permission denied.
 ```bash
 sudo setsebool -P httpd_can_network_connect on 
 sudo chcon -Rt httpd_sys_content_t /path/to/www
@@ -28,14 +28,3 @@ sudo chcon -Rt httpd_sys_content_t /path/to/www
 
 4. Конфиги класть в `/etc/nginx/conf.d`.
 
-## TODO
-1. 
-В `pacakge.json` добавить скрипт для деплоя
-```json
-scripts {
-  ...
-  "deploy": "npm install && npm run build && mv build/* $DEPLOY_LOCATION"
-}
-```
-
-2. DNS
