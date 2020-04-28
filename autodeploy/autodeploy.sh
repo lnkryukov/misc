@@ -31,17 +31,19 @@ LATEST_LOCAL=$(git rev-parse HEAD)
     #echo "Commit message is: $MESSAGE"
     for i in $MESSAGE; do
       if [ "$i" = "$RECREATE_TABLES_FLAG" ]; then
-        echo "Recreating tables..."
-
+        echo "$(date) Recreating tables..."   
+        
         echo "$(date) Starting instance..."
         sudo systemctl start $APP_SERVICE@"--create-tables"
         sleep 5
         echo "$(date) Stopping instance..."
         sudo systemctl stop $APP_SERVICE@"--create-tables"
+        systemctl status $APP_SERVICE@"--create-tables"
       fi
     done
 
     echo "$(date) Starting service"
     sudo systemctl start $APP_SERVICE@" "
+    systemctl status $APP_SERVICE@" "
   fi
 ) 200>~/.autodeploy.exclusivelock

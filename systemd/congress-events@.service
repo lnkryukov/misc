@@ -1,0 +1,16 @@
+[Unit]
+Description=Congress Events Flask server
+After=network.target
+
+[Service]
+User=app
+EnvironmentFile=/home/app/envars
+Environment="RUN_ARGS=%i"
+WorkingDirectory=/var/www/VKR:
+ExecStartPre=/usr/bin/python3 -m pip install -r requirements.txt --user
+ExecStart=/usr/bin/python3 main.py $RUN_ARGS
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+	
