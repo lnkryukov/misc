@@ -1,0 +1,4 @@
+APP_ROOT=/var/www/VKR
+APP_BRANCH=master
+APP_SERVICE=congress-events
+*/1 * * * * $HOME/autodeploy.sh >> $HOME/logs/autodeploy.log 2>&1
