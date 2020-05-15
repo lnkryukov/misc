@@ -28,3 +28,13 @@ sudo chcon -Rt httpd_sys_content_t /path/to/www
 
 4. Конфиги класть в `/etc/nginx/conf.d`.
 
+## SSL
+
+```
+listen 4000 ssl;
+error_page 497 301 =307 https://$http_host$uri;
+
+ssl_certificate "/etc/pki/tls/certs/server.crt";
+ssl_certificate_key "/etc/pki/tls/private/server.key";
+```
+
